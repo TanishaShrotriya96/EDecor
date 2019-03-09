@@ -1,0 +1,70 @@
+<!--DOCTYPE HTML-->
+{% load static %} 
+<html>
+<head>
+</head>
+<body>
+
+<center><h2>Results of Exploratory Data Analysis of the Seattle Crisis Data </h2><center><br><br>
+
+
+<div class="gallery">
+    <img src="{% static "disposition.jpg" %}" alt="Frequency representation of Disposition column in data" width="500" height="500">
+<div class="desc">Disposition of the Crisis Template (one template per person per crisis involved contact) as reported by the officer. This graph is the frequency representation for the Disposition column</div>
+</div>
+<br>
+<div class="gallery">
+    <img src="{% static "ICT.jpg" %}" alt="Various classes which fall under Initial Call Type" width="500" height="500">
+<div class="desc">This graph shows the approximate size of total number of unique initial call types and their relative frequencies. We see that the class frequencies fall within a range and aren't separated by large values. </div>
+</div>
+<br>
+<div class="gallery">
+   <img src="{% static "OBD.jpg" %}" alt="Office Bureau Description" width="500" height="500">
+<div class="desc">The frequency of how officers are distributed across various bureaus and racial distribution within each bureau</div>
+</div>
+<br>
+<div class="gallery">
+   <img src="{% static "OR.jpg" %}" alt="Officer Race Distribution Pie Chart" width="500" height="500">
+<div class="desc"> We see that maximum officers are White. The pie chart instantaneously brings out the racial imbalance in public service positions. </div>
+</div>
+<br>
+<div class="gallery">
+    <img src="{% static "OR1.jpg" %}" alt="Officer Race Bar graph " width="500" height="500">
+<div class="desc">The bar graph easily shows the approximate differnece in numbers of the one majority vs all other minorities.</div>
+</div>
+<br>
+<div class="gallery">
+    <img src="{% static "OR1S.jpg" %}" alt="Officer Race wise years of experience distribution" width="500" height="500">
+<div class="desc">Graph depicts that some records contain improperly filled values. Years cannot be in negative </div>
+</div>
+<br>
+<div class="gallery">
+    <img src="{% static "OR2S.jpg" %}" alt="Officer Race wise years of experience distribution after removing negative values" width="500" height="500">
+<div class="desc"> Since the count of these records is too small, relative to the size of dataset, we remove these from the dataset. Also some classes don't make sense, like the "Unknown" class. So we eliminate those records too.</div>
+</div>
+<br>
+<div class="gallery">
+    <img src="{% static "OR3S.jpg" %}" alt="Officer Race wise years of experience distribution after removing minority classes" width="500" height="500">
+  <div class="desc">The obtained scatter plot is a better depiction of the years of experience of officers wrt their race.</div>
+</div>
+<br>
+<div class="gallery">
+    <img src="{% static "OY.jpg" %}" alt="Officer years of experience graph" width="500" height="500">
+  <div class="desc">Officer years of experience graph, to understand work experience patterns. Maximum officers seem to have 1 year of experience. This could mean that there is a lot of hiring every year, however it is difficult to keep the positions filled. </div>
+</div>
+<br>
+<div class="gallery">
+    <img src="{% static "OYB.jpg" %}" alt="Officer years of experience graph" width="500" height="500">
+  <div class="desc">A frequency distribution of the yeard of birth for officer shows that maximum officers working currently were born in 1987 </div>
+</div>
+<br>
+
+<div class="gallery">
+    <img src="{% static "OG.jpg" %}" alt="Officer years of experience graph" width="500" height="500">
+  <div class="desc">Graph shows that a large gender gap continues to exist in seattle crisis management bureaus. </div>
+</div>
+<br>
+
+</body>
+</html>
+
