@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8">
+                <title>Django File Upload Example</title>
+                <link rel="stylesheet" href="{% static 'upload/animateNavbar.css' %}">
+        </head>
+         
+        <body>
+                <!-- List of uploaded documents -->
+                <!--documents is a reference to the classify_document table in mysql-->
+                
+                 <div id="mySidenav" class="sidenav">
+                  <a href="#myimages">My Images</a><!--functionality to allow user to pick an image-->
+                  <a href="/cart">My Profile</a> 
+                  <!--Go to base.html? one with the cart which has uploaded image and cart -->
+                  <a href="/base.html">Shop</a>
+                </div>
+                <!-- Upload form. Note enctype attribute! -->
+                <center>
+                <div class="container">
+                <div class="row">
+                <p >Upload New Image</p>
+                <form  action="{% url 'votings:uploadRoom' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <div class="col-xs-4">
+                                <table>
+                                <tr><td>{{ form.docfile.label_tag }}</td></tr>
+                                <tr><td>{{ form.docfile }}</td></tr>
+                                <tr><td><input type="submit" value="Upload" /></td></tr>
+                                </table>
+                            </div>
+                            <br><br>
+                            <div class="col-xs-4">
+                            {% block content %}
+                                {% if document %}
+                                        <div>
+                                        <img src="{% static document.docfile.name %}" alt="image-{{ classify.title }}"
+                                         height="400", width="400"></div>                                
+                                {% else %}
+                                        No documents.
+                                {% endif %}
+                            {% endblock %}   
+                            </div>
+                </form>
+                </div>
+                </div>   
+             </center>
+
+            <script src="{% static 'upload/animateNavbar.js' %}"></script>
+        </body>
+
+</html>

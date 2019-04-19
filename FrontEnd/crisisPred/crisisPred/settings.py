@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'crisisPred.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'NAME': 'edecor',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'USER': 'django',
+        'PASSWORD': 'django',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -131,8 +131,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_PATH = os.path.join(PROJECT_PATH,'static')
-
+USERS='static/users'
 STATICFILES_DIRS = (
     STATIC_PATH,
+    os.path.join(PROJECT_PATH,'static/users')
 )
+
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

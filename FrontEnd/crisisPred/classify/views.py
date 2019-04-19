@@ -1,8 +1,23 @@
 from django.shortcuts import render
 from django.template.loader import get_template
 from django.http import HttpResponse
+#databases imported
 from .models import CustomerDetails,ItemDetails	
+#for error handling. May not be in use 
 import pdb
+
+#used with upload image functionality
+from django.http import HttpResponseRedirect
+from django.template import RequestContext
+from django.urls import reverse
+from classify.models import Document
+from classify.forms import DocumentForm
+
+#used for saving uploaded image to static folder.
+import os
+
+#the algorithm file
+from classify.object import *
 # Create your views here.
 
 def predict(request):
@@ -71,7 +86,7 @@ def eventD(request):
 
 def dynamic(request):
     l1=list()
-    l1=[("0",["sample1.jpeg","sample2.jpeg","sample3.jpeg"]),("0",["sample4.jpg"])]
+    l1=[("0",["sample1.jpeg","sample2.jpeg","sample3.jpeg"]),("1",["sample4.jpg"])]
     
     print(l1[0][1])
     input=""
@@ -88,8 +103,34 @@ def dynamic(request):
     if(input=="0"):
     	print("Now here")    
     	content=l1[0][1]
+    if(input=="1"):
+    	print("Now here")    
+    	content=l1[1][1]
     print(content)
     context={'content':content}
     #pdb.set_trace()
     return render(request,'dynamic.html',context)
 	    
+def list1(request):
+    # Handle file upload
+    if(request.method == 'POST'):
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Document(docfile = request.FILES['docfile'])
+            file=request.FILES['docfile']
+            newdoc.save()
+            oldName=newdoc.docfile.path
+            newName="static/users/"+newdoc.docfile.name
+            os.rename(oldName,newName)
+            print(newdoc.docfile.path,file)
+            # Redirect to the document list after POST
+            return HttpResponseRedirect(reverse('list1'))
+    else:
+        form = DocumentForm() # A empty, unbound form
+
+    # Load documents for the list page
+
+    documents = Document.objects.all()
+    # print(documents)
+    # Render list page with the documents and the form
+    return render(request, 'list.html', {'documents': documents, 'form': form},)

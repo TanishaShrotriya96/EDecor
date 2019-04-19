@@ -1,8 +1,13 @@
 #ignore folder
 FrontEnd/Stylizer/
-FrontEnd/first_site/static/img
-FrontEnd/faster_rcnn_resnet50_coco_2018_01_28
-FrontEnd/models
+first_site/static/img
+first_site/cart/static/
+first_site/votings/static/
+FrontEnd/objectsClassifier/
+segmentation/samples/
+segmentation/segmentationresults/
+simple-django-login-and-register-master/screenshots/
+FrontEnd/models/
 
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
