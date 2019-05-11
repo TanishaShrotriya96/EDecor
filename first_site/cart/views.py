@@ -31,7 +31,7 @@ def cart_detail(request):
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
     room=request.session.get('currentRoom') 
-    user=request.session.get('customer_name')
+    user=request.user.username
     print(room)
     return render(request, 'cart/detail.html', {'cart': cart,'room':room,'user':user})
 

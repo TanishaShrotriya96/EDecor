@@ -1,8 +1,8 @@
 #ignore folder
 FrontEnd/Stylizer/
-first_site/static/img
-first_site/cart/static/
-first_site/votings/static/
+#first_site/static/img
+#first_site/cart/static/
+#first_site/votings/static/
 FrontEnd/objectsClassifier/
 segmentation/samples/
 segmentation/segmentationresults/

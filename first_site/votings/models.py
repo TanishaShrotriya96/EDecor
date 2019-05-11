@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 # Create your models here.
 
 #Name of Database Table is CustomerDetails and Columns are name and password.
@@ -37,7 +38,7 @@ class ItemDetails(models.Model):
 class Document(models.Model):
 
     docfile = models.FileField(default='')
-    customer = models.ForeignKey(CustomerDetails, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
     style1=models.CharField(default='',max_length=100)
     style2=models.CharField(default='',max_length=100)
   

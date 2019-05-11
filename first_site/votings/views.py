@@ -29,16 +29,30 @@ def product_list(request, category_slug=None):
 
     category = None
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True,description__icontains=currentStyle)
-   
-    print(currentStyle+" "+currentRoom)
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        #BEAUTIFUL
-        products = Product.objects.filter(category=category,description__icontains=currentStyle)
+        
+    if currentStyle!=None:
+        print("currentStyle not None")
+        products = Product.objects.filter(available=True,description__icontains=currentStyle)
+       
+        print(currentStyle," ",currentRoom)
+        if category_slug:
+            print("category_slug: ",category_slug)
+            category = get_object_or_404(Category, slug=category_slug)
+            #BEAUTIFUL
+            products = Product.objects.filter(category=category,description__icontains=currentStyle)
+            print(type(products))
+    else:
+        print("currentStyle is None")
+        products = Product.objects.filter(available=True)
+       
+        print(currentStyle," ",currentRoom)
+        if category_slug:
+            print("category_slug: ",category_slug)
+            category = get_object_or_404(Category, slug=category_slug)
+            products = Product.objects.filter(category=category)
+            print(type(products))
 
-        print(type(products))
-    user=request.session.get('customer_name')
+    user=request.user.username
     #extracting session variable of current logged in user.
     context = {
         'category': category,
@@ -46,6 +60,7 @@ def product_list(request, category_slug=None):
         'products': products,
         'user':user
     }
+
     return render(request, 'polls/product/list.html', context)
 
 
@@ -53,7 +68,7 @@ def product_detail(request, id, slug):
     print("I am in product_detail")
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm()
-    user=request.session.get('customer_name')
+    user=request.user.username
     context = {
         'product': product,
         'cart_product_form': cart_product_form,
@@ -83,8 +98,12 @@ def uploadRoom(request):
         if form.is_valid():
             print("Form is valid")
             # obtain session id of user.
-            customer_id=request.session.get('customer_id')
-
+            #customer_id=request.session.get('customer_id')
+            customer_id=request.user.id
+            customer_name=request.user.username
+            print(request.user.username)
+            print(request.user.email)
+            print(request.user.id)
             # create a model object and save the file to database.
             roomImage = Document(docfile = request.FILES['docfile'], customer_id=customer_id)
             print("Room Image Path is: ", roomImage.docfile.path)

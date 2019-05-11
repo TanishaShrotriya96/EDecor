@@ -18,12 +18,29 @@ from django.contrib import admin
 from django.views.generic import RedirectView
 from django.conf.urls.static import static
 from django.conf import settings
+from django.urls import path, include
+from main.views import IndexPageView, ChangeLanguageView
 
 urlpatterns = [
+   
+    #index page from votings app
+    path('login', IndexPageView.as_view(), name='index'),
+    #language related code
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('language/', ChangeLanguageView.as_view(), name='change_language'),
+
+    # accounts app related urls
+    path('accounts/', include('accounts.urls')),
+
+    #django admin page
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('votings.urls')),
-    url(r'^cart', include('cart.urls')),
+    #urls from cart and orders apps
+    url(r'^cart/', include('cart.urls')),
     url(r'^orders/', include('orders.urls')),
+    #urls from votings app
+    url(r'^', include('votings.urls')),
+    #keep votings urls are the end because of the regex urls
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # tell django to read urls.py in example app
@@ -31,15 +48,3 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_PATH)
     #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-#from django.contrib import admin
-#from django.urls import include, path
-
-#from django.conf import settings
-#from django.conf.urls.static import static
-#from django.views.generic import TemplateView
-
-#urlpatterns = [
-	#path('votings/', include('votings.urls')),
-    #path('admin/', admin.site.urls),
-#]
