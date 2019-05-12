@@ -1,8 +1,5 @@
 #session management - for two users!!!
-#logout functionality
-#register functionality
 #database dependency testing
 #cannot use semantic segmentation on individual images
-#test logout functionality- requires two refreshes
 #what does the table auth_permission do??
 #forgot password and forgot username don't work
