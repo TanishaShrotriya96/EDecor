@@ -5,50 +5,50 @@ edecorsite is the Django Project<br>
 edecor is the myapp folder <br>
 For this website, index.html from /edecor/templates has been edited and folders containing js and css have been kept in the static folder in edecorsite.
 
-# installing python3 <br>
+### Installing python3 <br>
 sudo apt-get update <br>
 sudo apt-get upgrade python3 <br>
 
-# making python3 default  <br>
+### Making python3 default  <br>
 python --version <br>
 sudo su <br>
 update-alternatives --install /usr/bin/python python /usr/bin/python3 1 <br>
 python --version <br>
 
-# get virtual env with python 3.6 <br>
+### Get virtual env with python 3.6 <br>
 virtualenv project -p python #when python has been set to python3.6 <br>
 virtualenv project -p python3 <br>
 
-# Get virtualenvWrapper too <br>
+### Get virtualenvWrapper too <br>
 
-# Tensorflow related installtions and other <br>
+### Tensorflow related installtions and other <br>
 workon project  <br>
 pip install numpy pandas sklearn keras tensorflow matplotlib Pillow  <br>
 sudo apt-get install python3-tk  <br>
 pip install Django <br>
 sudo apt-get install python-opencv <br>
-# if above does not work then --------->>
+### If above does not work then --------->>
 git clone https://github.com/opencv/opencv.git
 
-# copy paste object Detection package to site-packages in virtualenv <br>
-# keep FrontEnd/codes/SSD... in same directory as first_site  <br>
+Copy paste object Detection package to site-packages in virtualenv <br>
+Keep FrontEnd/codes/SSD... in same directory as first_site  <br>
 
-# necessary django installations <br>
+### Necessary django installations <br>
 pip install --upgrade django-crispy-forms <br>
 pip install mysqlclient <br>
 
-# Setup django as user in mysql with django as password. 
+### Setup django as user in mysql with django as password. 
 python
 
-# setup anaconda
+### Setup anaconda
 sha256sum Anaconda3-2018.12-Linux-x86_64.sh //download the latest .sh file 
 bash <output of previous command>
 
-# installing opencv
+### Installing opencv
 conda install -c conda-forge opencv #done with all environments deactivated
 conda config --set auto_activate_base false #set default base to false
 
-# may be useful later
+### May be useful later
 tensorboard
 tensorboard-1.13.1.dist-info
 tensorflow
