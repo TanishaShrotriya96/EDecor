@@ -38,20 +38,19 @@ pip install --upgrade django-crispy-forms <br>
 pip install mysqlclient <br>
 
 ### Setup django as user in mysql with django as password. 
-python
 
 ### Setup anaconda
-sha256sum Anaconda3-2018.12-Linux-x86_64.sh //download the latest .sh file 
-bash <output of previous command>
+sha256sum Anaconda3-2018.12-Linux-x86_64.sh //download the latest .sh file <br>
+bash <output of previous command> <br>
 
 ### Installing opencv
-conda install -c conda-forge opencv #done with all environments deactivated
-conda config --set auto_activate_base false #set default base to false
+conda install -c conda-forge opencv <br>//done with all environments deactivated<br>
+conda config --set auto_activate_base false<br> //set default base to false<br>
 
 ### May be useful later
-tensorboard
-tensorboard-1.13.1.dist-info
-tensorflow
-tensorflow-1.13.1.dist-info
-tensorflow_estimator
-tensorflow_estimator-1.13.0.dist-info
+tensorboard<br>
+tensorboard-1.13.1.dist-info<br>
+tensorflow<br>
+tensorflow-1.13.1.dist-info<br>
+tensorflow_estimator<br>
+tensorflow_estimator-1.13.0.dist-info<br>
