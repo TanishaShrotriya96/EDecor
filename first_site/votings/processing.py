@@ -1,15 +1,27 @@
 from votings.object import *
 from keras.backend import clear_session
+from keras import backend as K
 from django.core.cache import cache
+import keras
+import seaborn as sns
+import re
+import matplotlib.pyplot as plt
+import cv2
+import matplotlib.image as mpimg
+import pandas as pd 
+#used for extracting name of file from path to file
+import ntpath
 
 class ProcessRoomImage:
 
   detector=ObjectDetection() 
+  name=""
   #===================================================
   #Loading single image and detecting objects
   def DetectObjects(self,roomImage):
     
     images=Image.open(roomImage) 
+    self.name=roomImage
     #print("Image is as follows : \n\n\n")
     #images.show() 
     #print(images.size)
@@ -71,15 +83,28 @@ class ProcessRoomImage:
         #plt.figure(figsize=IMAGE_SIZE)
         #plt.imshow(img_np)
         
-        img=img.resize((64,64),Image.ANTIALIAS)
+        #size will change based on size given to model
+        img=img.resize((224,224),Image.ANTIALIAS)
         img_np = im.img_to_array(img)
         
-        l1.append(img_np) # preparing list for stylizer
+        #required for mobilenet model, not for sequential
+        preprocessed_image=keras.applications.mobilenet.preprocess_input(img_np)
 
+        l1.append(preprocessed_image) # preparing list for stylizer
+
+    img_np = self.detector.load_image_into_numpy_array(images)
+    print(img_np.shape)
+    print(img.size)    
+    #size will change based on size given to model
+    img=img.resize((224,224),Image.ANTIALIAS)
+    img_np = im.img_to_array(img)
+    preprocessed_image=keras.applications.mobilenet.preprocess_input(img_np)
+    l1.append(preprocessed_image) # preparing list for stylizer
 
     l2=np.array(l1)
     print("\n\nExtracted objects added to numpy array")
-    print(type(l2))
+    print("last image prediction is : ",l2[-1])
+    print("Shape of last prediction: ", l2[-1].shape)
     print("First value tells total objects sent to stylizer ",l2.shape)
     return l2 
 
@@ -99,7 +124,8 @@ class ProcessRoomImage:
 
         #get the model into json and hf format
         #name=str(input(("Enter name of model  =>")))
-        name=os.getcwd()+'/static/StylizerModel/a90b8'
+        name=os.getcwd()+'/static/StylizerModel/tfl'
+        #name=os.getcwd()+'/static/StylizerModel/colors'
         jsonFile=name+".json"
         hFile=name+".h5"
 
@@ -109,21 +135,22 @@ class ProcessRoomImage:
         json_file.close()
         loaded_model = model_from_json(loaded_model_json)  
         # load weights into new model
-        print("Before",loaded_model.get_weights()[1])
+        #print("Before",loaded_model.get_weights()[1])
         loaded_model.load_weights(hFile)
-        print("Weights",)
-        print("After",loaded_model.get_weights()[1])
-        print("\n\nLoaded model from disk")   
+        #print("Weights",)
+        #print("After",loaded_model.get_weights()[1])
+        #print("\n\nLoaded model from disk")   
         cache.set(model_cache_key, loaded_model, None) # save in the cache
-        print("Model in cache", cache.get(model_cache_key))
-        print("Here")
+        #print("Model in cache", cache.get(model_cache_key))
+        #print("Here")
         # in above line, None is the timeout parameter. It means cache forever
         
 
-    print("Inside LoadStylizer")
-    result =loaded_model.predict_classes(l2, batch_size=10)    
-    print("Classes are : ", result)
-
+    #print("Inside LoadStylizer")
+    #result =loaded_model.predict_classes(l2, batch_size=10)    
+    result =loaded_model.predict(l2, batch_size=10)    
+    print("Classes are (till 7th index): ", result[:7])
+ 
     #=======================================================
     #get the classes to style name mapping
 
@@ -144,18 +171,31 @@ class ProcessRoomImage:
 
     print("Classes are: "+ str(classes))
     keys=list(classes.keys())
-    print("keys: ", keys)
+    #print("keys: ", keys)
     values=list(classes.values())
-    print("values: ", values)
+    #print("values: ", values)
 
     #=====================================================
     #finding style which is seen in most quantity
     
-    result=list(result)
-    unique=set(result)
+    #needed for transfer learning mobilenet model
+    pred=[]
+    for each in result:
+        #print(each)
+        #print(np.max(each))
+        #print(np.where(each==np.max(each)))
+        pred.append(np.where(each==np.max(each))[0][0])
+        # since it is an array of two arrays of which index 0 is another array
+        # and index 1 is empty. We want the value inside array at index 0
+    print(pred) 
+    
+    #result=list(result)
+    #unique=set(result)
+    result=list(pred)
+    unique=set(pred)
     print("unique results"+ str(unique))
     total=list()
-    print("Before for each in unique")
+    #print("Before for each in unique")
 
     for each in unique:
         count=result.count(each)
@@ -165,6 +205,70 @@ class ProcessRoomImage:
         print("keys[values.index(str(each))]",keys[values.index(str(each))])
         total.append((each,count))
     print("classes found as :",total)
+    
+    #================= CREATE CLASS ACTIVATION MAP =====================
+    model=loaded_model
+    results=pd.DataFrame({'probability':result[-1],'category':["black","pink"]})
+
+    f = sns.barplot(x='probability',y='category',data=results,color="red")
+    sns.set_style(style='white')
+    f.grid(False)
+    f.spines["top"].set_visible(False)
+    f.spines["right"].set_visible(False)
+    f.spines["bottom"].set_visible(False)
+    f.spines["left"].set_visible(False)
+    f.set_title('Predictions:')
+
+    argmax = np.argmax(result[-1])
+    output = model.output[:, argmax]
+    #for i,layer in enumerate(model.layers):
+        #print(i,layer.name)
+
+
+    layers=[]
+    names=['conv_pw_1_relu','conv_pw_2_relu','conv_pw_3_relu','conv_pw_4_relu','conv_pw_5_relu',
+           'conv_pw_6_relu','conv_pw_7_relu','conv_pw_8_relu','conv_pw_9_relu','conv_pw_10_relu',
+           'conv_pw_11_relu','conv_pw_12_relu','conv_pw_13_relu'] 
+    for i,layer in enumerate(model.layers):
+        if(re.search("conv_pw_\d*_relu",layer.name)):
+            layers.append(model.get_layer(layer.name))
+       
+    len(layers)      
+    #create new directory to store all analysis images for current room image 
+    #file=ntpath.basename(self.name) 
+    #if(os.path.isdir(os.getcwd()+"/static/Analysis/"+file)==False):
+     #   os.mkdir(os.getcwd()+"/static/Analysis/"+file)
+    
+    for each in range(0,len(layers)):
+        print(layers[each].output)
+        grads = K.gradients(output, layers[each].output)[0]
+        pooled_grads = K.mean(grads, axis=(0, 1, 2))
+        iterate = K.function([model.input], [pooled_grads, layers[each].output[0]])
+        processed_image=l2[-1]
+        processed_image=np.expand_dims(processed_image,axis=0)
+    
+        print(processed_image.shape)
+        pooled_grads_value, conv_layer_output_value = iterate([processed_image])
+        for i in range(layers[each].output_shape[3]):
+            conv_layer_output_value[:, :, i] *= pooled_grads_value[i]
+            
+    #==================plot heatmap===================================================  
+        heatmap = np.mean(conv_layer_output_value, axis=-1)
+        heatmap = np.maximum(heatmap, 0)
+        heatmap /= np.max(heatmap)
+        plt.matshow(heatmap)
+        plt.savefig(os.getcwd()+"/static/Analysis/conv"+str(each)+".jpg")
+        #plt.show()
+        img = l2[-1]
+        heatmap = cv2.resize(heatmap, (img.shape[1], img.shape[0]))
+        heatmap = np.uint8(255 * heatmap)
+        heatmap = cv2.applyColorMap(heatmap, cv2.COLORMAP_JET)
+        hif = .8
+        superimposed_img = heatmap * hif + img
+        out = os.getcwd()+"/static/Analysis/camconv"+str(each)+".jpg"
+        cv2.imwrite(out, superimposed_img)
+        img=mpimg.imread(out)
+
     clear_session()
     return total
 

@@ -129,8 +129,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'edecor',
-        'USER': 'django',
-        'PASSWORD': 'django',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -213,6 +213,7 @@ STATICFILES_DIRS = (
     STATIC_PATH,
     os.path.join(PROJECT_PATH,'static/users'),
     os.path.join(CONTENT_DIR, 'assets'),
+    os.path.join(PROJECT_PATH, 'static/Analysis'),
     #'/Users/shubhangis.r.garnaik/Desktop/first_site/first_site/static',
     #'/Users/shubhangis.r.garnaik/Desktop/first_site/static',
 )

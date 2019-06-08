@@ -9,10 +9,11 @@ urlpatterns = [
     url(r'^$', views.IndexPageView.as_view(template_name="polls/index.html"), name='index'), # Notice the URL has been named
     url(r'^cat', views.CatPageView.as_view(template_name="polls/cat.html"), name='cat'),
     url(r'^uploadRoom/', views.uploadRoom, name='uploadRoom'),
-    url(r'^login/$',views.login,name='login'),
     url(r'^base', views.product_list, name='product_list'),
-    url(r'^logout/$',views.logout,name='logout'),
+    url(r'^actionUrl$', views.AllImages,name='AllImages'),
+    url(r'^actionUrll$', views.AllFurtherImages,name='AllFurtherImages'),
     #keep at the end so that it doesn't interfere with the rest of the urls
+
     url(r'^(?P<category_slug>[-\w]+)/$', views.product_list, name='product_list_by_category'),
     url(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$', views.product_detail, name='product_detail'),
     

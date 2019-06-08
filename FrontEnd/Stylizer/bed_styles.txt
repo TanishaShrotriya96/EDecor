@@ -1,0 +1,4 @@
+japanese:0
+meridian:1
+modern:2
+princess:3

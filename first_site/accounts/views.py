@@ -97,10 +97,9 @@ class LogInView(GuestOnlyView, FormView):
             return redirect(redirect_to)
 
         print("No I am here")
-        #return redirect(settings.LOGIN_REDIRECT_URL)
+        return redirect(settings.LOGIN_REDIRECT_URL)
         
-        return render(request, 'polls/uploadRoom.html')
-
+        
 
 class SignUpView(GuestOnlyView, FormView):
     template_name = 'accounts/sign_up.html'

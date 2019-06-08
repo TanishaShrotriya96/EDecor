@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, ListView # Import TemplateView.
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.urls import reverse
+from django.shortcuts import render_to_response
 
 from votings.models import *
 from votings.forms import *
@@ -21,16 +22,21 @@ from cart.forms import CartAddProductForm
 import json
 # to find substring in description of product to categorize by style
 import re
+import ntpath
 
+#shows all products by style and by category
 def product_list(request, category_slug=None):
+    
     print("Running...................product_list") #20 dots
     currentRoom=request.session.get('currentRoom')
     currentStyle=request.session.get('currentStyle')
-
+    roombreadth = request.session.get('roombreadth')
+    roomlength = request.session.get('roomlength')
     category = None
     categories = Category.objects.all()
         
     if currentStyle!=None:
+        #for All selected in category
         print("currentStyle not None")
         products = Product.objects.filter(available=True,description__icontains=currentStyle)
        
@@ -41,6 +47,10 @@ def product_list(request, category_slug=None):
             #BEAUTIFUL
             products = Product.objects.filter(category=category,description__icontains=currentStyle)
             print(type(products))
+        if category_slug=="nostyle":
+            products = Product.objects.filter(available=True)
+       
+
     else:
         print("currentStyle is None")
         products = Product.objects.filter(available=True)
@@ -64,6 +74,8 @@ def product_list(request, category_slug=None):
     return render(request, 'polls/product/list.html', context)
 
 
+
+#shows each product in detail
 def product_detail(request, id, slug):
     print("I am in product_detail")
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
@@ -76,7 +88,6 @@ def product_detail(request, id, slug):
     }
     return render(request, 'polls/product/detail.html', context)
 
-
 class IndexPageView(TemplateView):
 
     template_name = "polls/index.html"
@@ -84,6 +95,33 @@ class IndexPageView(TemplateView):
 
 class CatPageView(TemplateView):
     template_name = "polls/cat.html"
+#To show all the uploaded image rooms
+def AllImages(request):
+    print("I am inside all images")
+    customer_id=request.user.id
+    customer_name=request.user.username
+    print(request.user.username)
+    #print(request.user.email)
+    #print(request.user.id)
+
+    #g = get_object_or_404(Document,pk=customer_id)
+    #i = get_object_or_404(Document, pk=1)
+    i = Document.objects.all().order_by('-id')
+    return render(request, 'polls/product/myimages.html', {'imagedata' :i })
+
+
+def AllFurtherImages(request):
+    print("I am inside all images")
+    customer_id=request.user.id
+    customer_name=request.user.username
+    print(request.user.username)
+    #print(request.user.email)
+    #print(request.user.id)
+
+    #g = get_object_or_404(Document,pk=customer_id)
+    #i = get_object_or_404(Document, pk=1)
+    i = Document.objects.all().order_by('-id')
+    return render(request, 'polls/product/yourimages.html', {'imagedata' :i })
 
 def uploadRoom(request):
 
@@ -101,16 +139,17 @@ def uploadRoom(request):
             #customer_id=request.session.get('customer_id')
             customer_id=request.user.id
             customer_name=request.user.username
-            print(request.user.username)
-            print(request.user.email)
-            print(request.user.id)
             # create a model object and save the file to database.
-            roomImage = Document(docfile = request.FILES['docfile'], customer_id=customer_id)
+            brvalue = form.cleaned_data.get("breadth")
+            levalue = form.cleaned_data.get("length")
+            
+            roomImage = Document(docfile = request.FILES['docfile'], breadth = brvalue, length=levalue, customer_id=customer_id)
             print("Room Image Path is: ", roomImage.docfile.path)
             roomImage.save()
             # change the location of file to a more secure location.
             print("Name of Docfile",roomImage.docfile.path)
             print("Name of File " , request.FILES['docfile'].name)
+            print("BREADTH", roomImage.breadth)
             oldName=roomImage.docfile.path
             newName=os.getcwd()+"/static/users/"+ roomImage.docfile.name
             os.rename(oldName,newName)
@@ -140,18 +179,56 @@ def uploadRoom(request):
             roomImage.save()
 
             #save the room image as the current session image.
+            
             file=roomImage.docfile.name      
+            br = roomImage.breadth
+            le = roomImage.length
+            request.session['roomlength']=le
+            request.session['roombreadth']=br
             request.session['currentRoom']=file
             request.session['currentStyle']=roomImage.style1
-            
             #used for debug. 
-            #print(file)
+            #print(file)'''
             print("New Path is: "+newName)
             document = roomImage
             print(document)
+            
+            #=========== Send analysed images to template ===============
+            #file=ntpath.basename(newName) 
+            li=sorted(os.listdir(os.getcwd()+"/static/Analysis/"))
+            c1=li[0]
+            c2=li[1]
+            c3=li[2]
+            c4=li[3]
+            c5=li[4]
+            c6=li[5]
+            c7=li[6]
+            c8=li[7]
+            c9=li[8]
+            c10=li[9]
+            c11=li[10]
+            c12=li[11]
+            c13=li[12]
+            c14=li[13]
+            c15=li[14]
+            c16=li[15]
+            c17=li[16]
+            c18=li[17]
+            c19=li[18]
+            c20=li[19]
+            c21=li[20]
+            c22=li[21]
+            c23=li[22]
+            c24=li[23]
+            c25=li[24]
+            c26=li[25]
+            #l2=sorted(os.path(li))
+            print(li)
             # Redirect to the document list after POST.
             #return HttpResponseRedirect(reverse('list1')).
-            return render(request, 'polls/uploadRoom.html', {'document': document, 'form': form},)
+            return render(request, 'polls/uploadRoom.html', {'document': document, 
+                'form': form, 'list':li, 'file':file,'c1':c1,'c2':c2,'c3':c3,'c4':c4,'c5':c5,'c6':c6,'c7':c7,'c8':c8,'c9':c9,'c10':c10,'c11':c11,'c12':c12,'c13':c13,'c14':c14,'c15':c15,'c16':c16,'c17':c17,
+                'c18':c18,'c19':c19,'c20':c20,'c21':c21,'c22':c22,'c23':c23,'c24':c24,'c25':c25,'c26':c26},)
     # Load documents for the list page.
 
     
@@ -164,48 +241,6 @@ def uploadRoom(request):
     print("POST NOT received")
     return render(request, 'polls/uploadRoom.html', { 'form': form},)
 
-def login(request):
-
-    print("here")
-    # when secure request is received for login
-    if(request.method =='POST'):
-         print("CONNECTED TO LOGIN")
-
-         username= request.POST.get('user')
-         password= request.POST.get('password')
-
-         #counting total users in database where the username and password match
-         #the max count can be one and if either or both are incorrect then
-         #it will be 0
-         customer_obj=CustomerDetails.objects.get(
-                      name=username,password=password)
-         
-         print(customer_obj,"Counting total users: ",customer_obj)
-
-         # if user is authenticated then
-         if(customer_obj): 
-             print("Name Matched")
-             #create a session id for the specific user with id and username
-             customer_id=customer_obj.id
-             #setting session variables for the logged in session
-             request.session['customer_id']=customer_id
-             request.session['customer_name']=customer_obj.name
-
-             print("When inside login customer_id is : ", customer_id)
-             print("Now rendering list.html")
-             #now render the html page for upload functionality
-             return render(request, 'polls/uploadRoom.html')
-         else:
-             #else render the same page
-             return render(request, 'polls/index.html')
-    else:
-        return render(request, 'polls/index.html')
-
-def logout(request) :
-    print("I am in logout")
-    if(request.method == 'POST'):
-        request.session.flush()
-    return render(request, 'polls/index.html')
 
 '''#from django.shortcuts import render
 #from django.template.loader import get_template

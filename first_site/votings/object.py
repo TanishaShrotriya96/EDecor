@@ -4,7 +4,7 @@ import tensorflow as tf
 from distutils.version import StrictVersion
 from collections import defaultdict
 from io import StringIO
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 from PIL import Image
 import PIL 
 import numpy as np
@@ -18,7 +18,7 @@ from keras.models import model_from_json
 # raise ImportError('Please upgrade your TensorFlow installation to v1.9.* or later!')
 from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
-import matplotlib
+#import matplotlib
 #import cache to store loaded model
 from django.core.cache import cache
 #import cv2
@@ -27,9 +27,9 @@ from django.core.cache import cache
 
 #os.chdir('/home/tanisha/EDecor/FrontEnd/models/research/object_detection')
 
-DIR=os.getcwd().strip('first_site')+'FrontEnd/models/research/object_detection/'
+DIR=os.getcwd().strip('first_site')+'/FrontEnd/models/research/object_detection/'
 # Path to frozen detection graph. This is the actual model that is used for the object detection.
-PATH_TO_FROZEN_GRAPH =os.getcwd().strip('first_site')+'FrontEnd/codes/ssd_mobilenet_v1_coco_2017_11_17/frozen_inference_graph.pb'
+PATH_TO_FROZEN_GRAPH =os.getcwd().strip('first_site')+'/FrontEnd/codes/ssd_mobilenet_v1_coco_2017_11_17/frozen_inference_graph.pb'
 #PATH_TO_FROZEN_GRAPH = '/home/tanisha/EDecor/FrontEnd/faster_rcnn_resnet50_coco_2018_01_28/frozen_inference_graph.pb'
 
 # List of the strings that is used to add correct label for each box.
@@ -37,7 +37,7 @@ PATH_TO_FROZEN_GRAPH =os.getcwd().strip('first_site')+'FrontEnd/codes/ssd_mobile
 PATH_TO_LABELS = DIR+"data/mscoco_label_map.pbtxt"
 detection_graph = tf.Graph()
 category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS, use_display_name=True)
-PATH_TO_TEST_IMAGES_DIR = os.getcwd().strip('first_site')+'FrontEnd/crisisPred/static/test_images'
+PATH_TO_TEST_IMAGES_DIR = os.getcwd().strip('first_site')+'EDecor/FrontEnd/crisisPred/static/test_images'
 # Size, in inches, of the output images.
 IMAGE_SIZE = (12, 8)
 TEST_IMAGE_PATHS = [ os.path.join(PATH_TO_TEST_IMAGES_DIR, 'image{}.jpg'.format(i)) for i in range(1, 8) ]

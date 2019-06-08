@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+import csv
 # Create your models here.
 
 #Name of Database Table is CustomerDetails and Columns are name and password.
@@ -38,6 +39,8 @@ class ItemDetails(models.Model):
 class Document(models.Model):
 
     docfile = models.FileField(default='')
+    breadth = models.IntegerField(default=0)
+    length = models.IntegerField(default=0)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     style1=models.CharField(default='',max_length=100)
     style2=models.CharField(default='',max_length=100)
@@ -74,6 +77,8 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+    ibreadth = models.IntegerField(default=0)
+    ilength = models.IntegerField(default=0)
 
     class Meta:
         ordering = ('name', )
@@ -85,3 +90,13 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('votings:product_detail', args=[self.id, self.slug])
 
+
+    def get_all_products():
+        items = []
+        with open('/home/tanisha/EDecor/data.csv','r') as fp:
+            # You can also put the relative path of csv file
+            # with respect to the manage.py file
+            reader1 = csv.reader(fp, delimiter=';')
+            for value in reader1:
+                items.append(value)
+        return items

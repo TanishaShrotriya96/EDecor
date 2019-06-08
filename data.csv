@@ -1,0 +1,73 @@
+id,name,slug,image,price,available,stock,created_at,updated_at,description,category_id,ibreadth,ilength
+1,Modern Single Bed,modern-single-bed,Products/2030/04/19/bp1.jpg,6999,1,5,30/04/19 00:24,30/04/19 00:24,pink,1,96cm,190cm
+2,Modern Living Room Table,modern-living-room-table,products/2019/04/30/tb1.jpg,3999,1,4,30/04/19 00:24,30/04/19 00:24,black,2,76cm,91cm
+3,Modern Cushion Chair,modern-cushion-chair,products/2019/04/30/cp1.jpg,2500,1,7,30/04/19 00:24,30/04/19 00:24,pink,3,50cm,82cm
+4,Modern Double Bed,modern-double-bed,products/2019/04/30/bb1.jpg,9999,1,5,30/04/19 00:24,30/04/19 00:24,black,1,152cm,203cm
+5,Modern Office work table,modern-office-work-table,products/2019/04/30/tp1.jpg,6000,1,3,30/04/19 00:24,30/04/19 00:24,pink,2,71cm,87cm
+6,Modern Sleak Chair,modern-sleak-chair,products/2019/04/30/cb1.jpg,2799,1,7,30/04/19 00:24,30/04/19 00:24,black,3,45cm,83cm
+7,Modern Single Bed,modern-single-bed,products/2019/04/30/bp2.jpg,7599,1,5,30/04/19 00:24,30/04/19 00:24,pink,1,134cm,190cm
+8,Modern Curved Support Table,modern-curved-support-table,products/2019/04/30/tb2.jpg,5500,1,8,30/04/19 00:24,30/04/19 00:24,black,2,76cm,97cm
+9,Modern Soft Chair,modern-soft-chair,products/2019/04/30/cp2.jpg,2399,1,4,30/04/19 00:24,30/04/19 00:24,pink,3,44cm,85cm
+10,Modern Double Bed,modern-double-bed,products/2019/04/30/bb2.jpg,8999,1,2,30/04/19 00:24,30/04/19 00:24,black,1,152cm,206cm
+11,Modern Geometric table,modern-geometric-table,products/2019/04/30/tp2.jpg,4000,1,6,30/04/19 00:24,30/04/19 00:24,pink,2,75cm,90cm
+12,Modern Circular Back Chair,modern-circular-back-chair,products/2019/04/30/cb2.pg,1800,1,8,30/04/19 00:24,30/04/19 00:24,black,3,46cm,89cm
+13,Modern Single Bed,modern-single-bed,products/2019/04/30/bp3.jpg,7500,1,5,30/04/19 00:24,30/04/19 00:24,pink,1,97cm,192cm
+14,Modern Triangular table,modern-triangular-table,products/2019/04/30/tb3.jpg,5699,1,6,30/04/19 00:24,30/04/19 00:24,black,2,72cm,98cm
+15,Modern Rest Chairs,modern-rest-chairs,products/2019/04/30/cp3.jpg,1200,1,4,30/04/19 00:24,30/04/19 00:24,pink,3,50cm,82cm
+16,Modern Double Bed,modern-double-bed,products/2019/04/30/bb3.jpg,12099,1,3,30/04/19 00:24,30/04/19 00:24,black,1,193cm,203cm
+17,Modern Storage table,modern- storage-table,products/2019/04/30/tp3.jpg,5399,1,6,30/04/19 00:24,30/04/19 00:24,pink,2,61cm,76cm
+18,Modern Comfort chair,modern-comfort-chair,products/2019/04/30/cb3.jpg,1400,1,4,30/04/19 00:24,30/04/19 00:24,black,3,45cm,80cm
+19,Meridian Double bed,meridian-double-bed,products/2019/04/30/bp4.jpg,13000,1,5,30/04/19 00:24,30/04/19 00:24,pink,1,96cm,190cm
+20,Meridian Wooden Black table ,meridian-wooden-black-table ,products/2019/04/30/tb4.jpg,4299,1,8,30/04/19 00:24,30/04/19 00:24,black,2,76cm,91cm
+21,Meridian Curved Chairs,meridian-curved-chairs,products/2019/04/30/cp4.jpg,1500,1,3,30/04/19 00:24,30/04/19 00:24,pink,3,50cm,82cm
+22,Meridian Double bed,meridian-double-bed,products/2019/04/30/bb4.jpg,15000,1,4,30/04/19 00:24,30/04/19 00:24,black,1,152cm,203cm
+23,Meridian Triangular table,meridian-triangular-table,products/2019/04/30/tp4.jpg,4599,1,5,30/04/19 00:24,30/04/19 00:24,pink,2,71cm,87cm
+24,Meridian Rest Chair,meridian-rest-chair,products/2019/04/30/cb4.jpg,2500,1,8,30/04/19 00:24,30/04/19 00:24,black,3,45cm,83cm
+25,Meridian Single bed,meridian-single-bed,products/2019/04/30/bp5.jpg,8799,1,7,30/04/19 00:24,30/04/19 00:24,pink,1,134cm,190cm
+26,Meridian Circular table,meridian-circular-table,products/2019/04/30/tb5.jpg,3999,1,9,30/04/19 00:24,30/04/19 00:24,black,2,76cm,97cm
+27,Meridian Fancy Chair,meridian-fancy-chair,products/2019/04/30/cp5.jpg,2500,1,3,30/04/19 00:24,30/04/19 00:24,pink,3,44cm,85cm
+28,Meridian Double bed,meridian-double-bed,products/2019/04/30/bb5.jpg,9999,1,7,30/04/19 00:24,30/04/19 00:24,black,1,152cm,204cm
+29,Meridian Teapot table,meridian-teapot-table,products/2019/04/30/tp5.jpg,6000,1,5,30/04/19 00:24,30/04/19 00:24,pink,2,75cm,90cm
+30,Meridian Soft chair,meridian-soft-chair,products/2019/04/30/cb5.jpg,2799,1,8,30/04/19 00:24,30/04/19 00:24,black,3,46cm,89cm
+31,Meridian Double enclosed bed,meridian-double-enclosed-bed,products/2019/04/30/bp6.jpg,7599,1,4,30/04/19 00:24,30/04/19 00:24,pink,1,97cm,192cm
+32,Meridian Wooden Circular Table,meridian-wooden-circular-table,products/2019/04/30/tb6.jpg,5500,1,2,30/04/19 00:24,30/04/19 00:24,black,2,72cm,98cm
+33,Meridian Furry Chair,meridian-furry-chair,products/2019/04/30/cp6.jpg,2399,1,6,30/04/19 00:24,30/04/19 00:24,pink,3,50cm,82cm
+34,Meridian Double enclosed bed,meridian-double-enclosed-bed,products/2019/04/30/bb6.jpg,8999,1,8,30/04/19 00:24,30/04/19 00:24,black,1,193cm,203cm
+35,Meridian Show Piece table,meridian-show-piece-table,products/2019/04/30/tp6.jpg,4000,1,5,30/04/19 00:24,30/04/19 00:24,pink,2,61cm,76cm
+36,Meridian Dining Chairs,meridian-dining-chairs,products/2019/04/30/cb7.jpg,1800,1,6,30/04/19 00:24,30/04/19 00:24,black,3,45cm,80cm
+37,Scandinavian Sofa Bed ,scandinavian-sofa-bed ,products/2019/04/30/bp7.jpg,6999,1,4,30/04/19 00:24,30/04/19 00:24,pink,1,75cm,118cm
+38,Scandinavian Square table,scandinavian-square-table,products/2019/04/30/tb7.jpg,3999,1,3,30/04/19 00:24,30/04/19 00:24,black,2,72cm,98cm
+39,Scandinavian Plastic Chair,scandinavian-plastic-chair,products/2019/04/30/cp7.jpg,2500,1,6,30/04/19 00:24,30/04/19 00:24,pink,3,50cm,82cm
+40,Scandinavian Double Bed ,scandinavian-double-bed ,products/2019/04/30/bb7.jpg,9999,1,4,30/04/19 00:24,30/04/19 00:24,black,1,193cm,203cm
+41,Scandinavian Vas table ,scandinavian-vas-table ,products/2019/04/30/tp7.jpg,6000,1,5,30/04/19 00:24,30/04/19 00:24,pink,2,61cm,76cm
+42,Scandinavian Butterfly Chair  ,scandinavian-butterfly-chair  ,products/2019/04/30/cb12.jpg,2799,1,3,30/04/19 00:24,30/04/19 00:24,black,3,45cm,80cm
+43,Scandinavian Double Bed ,scandinavian-double-bed ,products/2019/04/30/bp8.jpg,7599,1,2,30/04/19 00:24,30/04/19 00:24,pink,1,96cm,190cm
+44,Scandinavian Knee height table ,scandinavian-knee-height-table ,products/2019/04/30/tb8.jpg,5500,1,5,30/04/19 00:24,30/04/19 00:24,black,2,76cm,91cm
+45,Scandinavian Arm Chair  ,scandinavian-arm-chair ,products/2019/04/30/cp8.jpg,2399,1,7,30/04/19 00:24,30/04/19 00:24,pink,3,50cm,82cm
+46,Scandinavian Double Bed ,scandinavian-double-bed ,products/2019/04/30/bb8.jpg,8999,1,6,30/04/19 00:24,30/04/19 00:24,black,1,152cm,203cm
+47,Scandinavian Dressing table ,scandinavian-dressing-table ,products/2019/04/30/tp8.jpg,4000,1,8,30/04/19 00:24,30/04/19 00:24,pink,2,71cm,87cm
+48,Scandinavian Wooden chair ,scandinavian-wooden-chair,products/2019/04/30/cb8.jpg,1800,1,3,30/04/19 00:24,30/04/19 00:24,black,3,45cm,83cm
+49,Scandinavian Double Bed ,scandinavian-double-bed ,products/2019/04/30/bp9.jpg,7500,1,5,30/04/19 00:24,30/04/19 00:24,pink,1,134cm,190cm
+50,Scandinavian Glass table ,scandinavian-glass-table ,products/2019/04/30/tb9.jpg,5699,1,2,30/04/19 00:24,30/04/19 00:24,black,2,76cm,97cm
+51,Scandinavian Cozy Chair  ,scandinavian-cozy-chair,products/2019/04/30/cp9.jpg,1200,1,3,30/04/19 00:24,30/04/19 00:24,pink,3,44cm,85cm
+52,Scandinavian Double Bed ,scandinavian-double-bed,products/2019/04/30/bb9.jpg,12999,1,7,30/04/19 00:24,30/04/19 00:24,black,1,152cm,204cm
+53,Scandinavian Angular Table ,scandinavian-angular-table ,products/2019/04/30/tp9.jpg,5399,1,5,30/04/19 00:24,30/04/19 00:24,pink,2,75cm,90cm
+54,Scandinavian Petal Chair ,scandinavian-petal-chair,products/2030/04/19/cb9.jpg,1400,1,8,30/04/19 00:24,30/04/19 00:24,black,3,46cm,89cm
+55,Japanese Double Bed ,japanese-double-bed ,products/2019/04/30/bp10.jpg,13000,1,4,30/04/19 00:24,30/04/19 00:24,pink,1,152cm,204cm
+56,Japanese Flat table ,japanese-flat-table ,products/2019/04/30/tb10.jpg,4299,1,2,30/04/19 00:24,30/04/19 00:24,black,2,75cm,90cm
+57,Japanese Kid Chair,japanese-kid-chair,products/2019/04/30/cp10.jpg,3200,1,6,30/04/19 00:24,30/04/19 00:24,pink,3,46cm,89cm
+58,Japanese Double Bed ,japanese-double-bed ,products/2019/04/30/bb10.jpg,15000,1,8,30/04/19 00:24,30/04/19 00:24,black,1,97cm,192cm
+59,Japanese Double storage table ,japanese-double-storage-table ,products/2019/04/30/tp10.jpg,4599,1,5,30/04/19 00:24,30/04/19 00:24,pink,2,72cm,98cm
+60,Japanese Wooden leather chair ,japanese-wooden-leather-chair ,products/2019/04/30/cb10.jpg,2700,1,6,30/04/19 00:24,30/04/19 00:24,black,3,50cm,82cm
+61,Japanese Double Bed ,japanese-double-bed ,products/2019/04/30/bp11.jpg,8799,1,4,30/04/19 00:24,30/04/19 00:24,pink,1,193cm,203cm
+62,Japanese Classic Table,japanese-classic-table,products/2019/04/30/tb11.jpg,3999,1,3,30/04/19 00:24,30/04/19 00:24,black,2,61cm,76cm
+63,Japanese Study Chair,japanese-study-chair,products/2019/04/30/cp11.jpg,2500,1,6,30/04/19 00:24,30/04/19 00:24,pink,3,45cm,80cm
+64,Japanese Double Bed ,japanese-double-bed ,products/2019/04/30/bb11.jpg,9999,1,4,30/04/19 00:24,30/04/19 00:24,black,1,96cm,190cm
+65,Japanese Circular table,japanese-circular-table,products/2019/04/30/tp11.jpg,6000,1,8,30/04/19 00:24,30/04/19 00:24,pink,2,76cm,91cm
+66,Japanese Soft Mettalic Chair,japanese-soft-mettalic-chair,products/2019/04/30/cb11.jpg,2799,1,7,30/04/19 00:24,30/04/19 00:24,black,3,50cm,82cm
+67,Japanese Double Bed ,japanese-double-bed ,products/2019/04/30/bp12.jpg,7599,1,6,30/04/19 00:24,30/04/19 00:24,pink,1,152cm,203cm
+68,Japanese Storage table,japanese-storage-table,products/2019/04/30/tb12.jpg,6500,1,5,30/04/19 00:24,30/04/19 00:24,black,2,71cm,87cm
+69,Japanese Plastic Chair,japanese-plastic-chair,products/2019/04/30/cp12.jpg,2399,1,2,30/04/19 00:24,30/04/19 00:24,pink,3,45cm,83cm
+70,Japanese Double Bed ,japanese-double-bed ,products/2019/04/30/bb12.jpg,18999,1,3,30/04/19 00:24,30/04/19 00:24,black,1,134cm,190cm
+71,Japanese Storage table,japanese-storage-table,products/2019/04/30/tp12.jpg,4000,1,6,30/04/19 00:24,30/04/19 00:24,pink,2,76cm,97cm
+72,Japanese Plastic Chair,japanese-plastic-chair,products/2019/04/30/cb6.jpg,2800,1,4,30/04/19 00:24,30/04/19 00:24,black,3,44cm,85cm

@@ -3,53 +3,185 @@
 <!DOCTYPE html>
 <html>
         <head>
-                <meta charset="utf-8">
-                <title>Django File Upload Example</title>
-                <link rel="stylesheet" href="{% static 'upload/animateNavbar.css' %}">
-                
+            <title>Upload Image</title>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+              <meta charset="utf-8">
+              <link rel="stylesheet" href="{% static 'upload/animateNavbar.css' %}">    
         </head>
          
         <body>
                 <!-- List of uploaded documents -->
                 <!--documents is a reference to the classify_document table in mysql-->
+            <div class="container-fluid">
+            <div class="row">
                 
-                 <div id="mySidenav" class="sidenav">
-                  <a href="#myimages">My Images</a><!--functionality to allow user to pick an image-->
-                  <a href="/cart">My Profile</a> 
-                  <!--Go to base.html? one with the cart which has uploaded image and cart -->
-                  <a href="/base.html">Shop</a>
+                <div class="col-sm-2">
+                     <div id="mySidenav" class="sidenav">
+                      <a href="{% url "votings:AllImages" %}">My Images</a><!--functionality to allow user to pick an image-->
+                      <a href="/cart">My Profile</a> 
+                      <!--Go to base.html? one with the cart which has uploaded image and cart -->
+                      <a href="/base.html">Shop</a>
+                      <a href="{% url 'votings:index' %}">Home</a>
+                      <a href="{% url 'accounts:log_out' %}">Logout</a>
+                    </div>
                 </div>
-                <!-- Upload form. Note enctype attribute! -->
-                <center>
-                <div class="container">
-                <div class="row">
-                <p >Upload New Image</p>
-                <form  action="{% url 'votings:uploadRoom' %}" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                            <div class="col-xs-4">
-                                <table>
-                                <tr><td>{{ form.docfile.label_tag }}</td></tr>
-                                <tr><td>{{ form.docfile }}</td></tr>
-                                <tr><td><input type="submit" value="Upload" /></td></tr>
-                                </table>
+                
+                <div class="col-sm-6">
+                    <!-- Upload form. Note enctype attribute! -->
+                    <div class="container">
+                    <div class="row">
+                    <p >Upload New Image</p>
+                    <form  action="{% url 'votings:uploadRoom' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                                <div class="col-xs-4">
+                                    <table>
+                                    <tr><td>{{ form.docfile.label_tag }}</td></tr>
+                                    
+                                    <tr><td>{{ form.breadth.label_tag }} {{ form.breadth }}</td></tr>
+                                    <tr><td>{{ form.length.label_tag }}{{ form.length }}</td></tr>
+                                    
+                                    <tr><td>{{ form.docfile }}</td></tr>
+                                    <tr><td><input type="submit" value="Upload" /></td></tr>
+                                    
+                                    <br><br>
+                                    <tr><td>
+                                    <div class="col-xs-4">
+                                    {% block content %}
+                                        {% if document %}
+                                                <div>
+                                                <img src="{% static document.docfile.name %}" alt="image-{{ classify.title }}"
+                                                 height="400", width="400"></div>                                
+                                        {% endif %}
+                                    {% endblock %}   
+                                    </div>
+                                    </td></tr>
+                                 </table>
                             </div>
-                            <br><br>
-                            <div class="col-xs-4">
-                            {% block content %}
-                                {% if document %}
-                                        <div>
-                                        <img src="{% static document.docfile.name %}" alt="image-{{ classify.title }}"
-                                         height="400", width="400"></div>                                
-                                {% else %}
-                                        No documents.
-                                {% endif %}
-                            {% endblock %}   
-                            </div>
-                </form>
-                </div>
-                </div>   
-             </center>
+                    </form>
+                    <div class="col-sm-2">
+                    </div>
+                    
+                    <div class="col-sm-4">
+                    <p> This is how the algorithm is extracting style in your room.</p>    
+                    <table style="width:100%; padding: 20px; ">
+                      <tr>
+                        <td>{% if c1 %}
+                            <img src="{% static c1 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}
+                        </td>
+                        <td>{% if c2 %}
+                            <img src="{% static c2 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                        <td>{% if c3 %}
+                            <img src="{% static c3 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                      </tr>
+                      <tr>
+                        <td>{% if c4 %}
+                            <img src="{% static c4 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}
+                        </td>
+                        <td>{% if c5 %}
+                            <img src="{% static c5 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                        <td>{% if c6 %}
+                            <img src="{% static c6 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                      </tr>
+                      <tr>
+                        <td>{% if c7 %}
+                            <img src="{% static c7 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}
+                        </td>
+                        <td>{% if c8 %}
+                            <img src="{% static c8 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                        <td>{% if c9 %}
+                            <img src="{% static c9 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                      </tr>
+                      <tr>
+                        <td>{% if c10 %}
+                            <img src="{% static c10 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}
+                        </td>
+                        <td>{% if c11 %}
+                            <img src="{% static c11 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                        <td>{% if c12 %}
+                            <img src="{% static c12 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                      </tr>
+                      <tr>
+                        <td>{% if c13 %}
+                            <img src="{% static c13 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}
+                        </td>
+                        <td>{% if c14 %}
+                            <img src="{% static c14 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                        <td>{% if c15 %}
+                            <img src="{% static c15 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                      </tr>
+                      <tr>
+                        <td>{% if c16 %}
+                            <img src="{% static c16 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}
+                        </td>
+                        <td>{% if c17 %}
+                            <img src="{% static c17 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                        <td>{% if c18 %}
+                            <img src="{% static c18 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                      </tr>
+                      <tr>
+                        <td>{% if c19 %}
+                            <img src="{% static c19 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}
+                        </td>
+                        <td>{% if c20 %}
+                            <img src="{% static c20 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                        <td>{% if c21 %}
+                            <img src="{% static c21 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                      </tr>
+                      <tr>
+                        <td>{% if c22 %}
+                            <img src="{% static c22 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}
+                        </td>
+                        <td>{% if c23 %}
+                            <img src="{% static c23 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                        <td>{% if c24 %}
+                            <img src="{% static c24 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                      </tr>
+                      <tr>
+                        <td>{% if c25 %}
+                            <img src="{% static c25 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}
+                        </td>
+                        <td>{% if c26 %}
+                            <img src="{% static c26 %}" alt="image-" height="90", width="90"></div>
+                            {% endif %}</td>
+                      </tr>
+                    </table>    
+                 </div>    
 
+                    </div>
+                    </div> 
+                 </div>   
+
+             </div>
+            </div>
             <script src="{% static 'upload/animateNavbar.js' %}"></script>
         </body>
 

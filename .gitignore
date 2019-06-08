@@ -1,12 +1,13 @@
 #ignore folder
-FrontEnd/Stylizer/
-#first_site/static/img
-#first_site/cart/static/
-#first_site/votings/static/
-FrontEnd/objectsClassifier/
+FrontEnd/Stylizer/data/
+first_site/static/img
+first_site/cart/static/
+first_site/votings/static/
+FrontEnd/objectsClassifier/single_image
+FrontEnd/objectsClassifier/test
+FrontEnd/objectsClassifier/train
 segmentation/samples/
 segmentation/segmentationresults/
-simple-django-login-and-register-master/screenshots/
 FrontEnd/models/
 
 # Created by https://www.gitignore.io/api/python

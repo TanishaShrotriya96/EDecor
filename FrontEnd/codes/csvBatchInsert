@@ -1,0 +1,20 @@
+Batch insert into mysql from csv file.
+
+Load data local infile '/home/tanisha/EDecor/data.csv'
+into table votings_product
+fields terminated by ','
+enclosed by '"'
+lines terminated by '\n'
+ignore 1 rows;
+
+Product(
+        name = tmp_data.ix[row]['Name'] 
+        description = tmp_data.ix[row]['Description'],
+        price = tmp_data.ix[row]['price'],
+    )
+
+id=product[row][]	
+name=product[row][]	
+slug=product[row][]	
+image=product[row][]	price	available	stock	created_at	updated_at	description	category_id	ibreadth	ilength
+
